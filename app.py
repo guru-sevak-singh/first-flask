@@ -2,15 +2,30 @@ from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_sqlalchemy import SQLAlchemy
 import os
 import json
+# IMPORT FROM ENV FILE
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+
+
 # INIT THE APP
 app = Flask(__name__)
 
 # GET THE DB LOCATION
-db_locatoin = 'sqlite:///database.sqlite'
-# db_locatoin = f'sqlite:///{os.path.join(os.getcwd(), "database.sqlite" )}'
+# db_location = 'sqlite:///database.sqlite'
+# db_location = f'sqlite:///{os.path.join(os.getcwd(), "database.sqlite" )}'
+
+# UPDATING THE DATABASE WITH POSTGRESQL
+db_location = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 # CONFIGURE THE DATABASE URI
-app.config['SQLALCHEMY_DATABASE_URI'] = db_locatoin
+app.config['SQLALCHEMY_DATABASE_URI'] = db_location
 app.config['SECRET_KEY'] = 'MY SECRET KEY...'
 
 
@@ -24,8 +39,8 @@ class BlogPost(db.Model):
     subtitle = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
 
-# with app.app_context():
-#     db.create_all()
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/')
