@@ -9,6 +9,7 @@ This project demonstrates core CRUD functionality, Flask templating, and Docker 
 - Designed and developed the entire application from scratch.
 - Implemented **CRUD operations** (create, view, delete blog posts).
 - Built templates using **Flask Jinja2 base layout** for a clean structure.
+- Use the **postgreSQL Database** so that it can be easy for production  usage.
 - Containerized the app with **Docker**, keeping the **SQLite database outside the container** for persistence.
 - Ensured simple, modular code for easy understanding and extension.
 
@@ -17,7 +18,8 @@ This project demonstrates core CRUD functionality, Flask templating, and Docker 
 ## 🛠 Skills & Tools Used
 - **Python (Flask)** – backend & routing  
 - **SQLite** – lightweight database  
-- **Jinja2** – templating for UI  
+- **Jinja2** – templating for UI
+- **postgreSQL** - adding the postgreSQL database
 - **Docker** – containerization with volume mount for external DB  
 - **HTML/CSS** – basic UI styling  
 
@@ -38,22 +40,6 @@ This project demonstrates core CRUD functionality, Flask templating, and Docker 
 ```mermaid
 graph TD;
     User[User Browser] -->|HTTP Requests| Flask[Flask App];
-    Flask -->|Reads/Writes| SQLite[(SQLite Database)];
-    SQLite -. Outside Volume .- Docker[Docker Container];
-```
-
-## Project Structure
-
-```
-
-.
-├── app.py              # Main Flask application
-├── templates/          # Jinja2 HTML templates (base.html, index.html, add.html, etc.)
-├── static/             # CSS/JS (optional)
-├── requirements.txt    # Python dependencies
-├── Dockerfile          # Containerization
-├── database.sqlite     # SQLite database (mounted externally)
-└── README.md           # Project showcase
-└── SETUP.md            # Project Setup file
-
+    Flask -->|Reads/Writes| SQLite[(postgreSQL database)];
+    postgreSQL -. Outside Volume .- Docker[Docker Container];
 ```
