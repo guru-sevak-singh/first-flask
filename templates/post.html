@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/styles.css">
-</head>
-<body>
-<div class="wrapper">
-    <div class="top">
-        <div class="title"><h1>{{post.title}}</h1></div>
-           </div>
-        <div class="content">
-            <div class="card">
-                <h2>{{post.subtitle}}</h2>
-                <p>{{post.body}}</p>
-            </div>
+{% extends "base.html" %}
 
+{% block title %}
+
+<title>
+    {{post.title}}
+</title>
+
+{% endblock %}
+
+{% block body %}
+
+<div class="top">
+    <div class="title">
+        <h1>{{post.title}}</h1>
     </div>
 </div>
-</body>
-<footer>
-    <p>Made with ♥️ in London.</p>
-</footer>
-</html>
+
+<div class="content">
+
+    <div class="card">
+
+        <h2>{{post.subtitle}}</h2>
+        <p>{{post.body}}</p>
+
+        <a class="submit-button" href="{{ url_for('update_post', post_id=post.id) }}">Update Post</a>
+        <a class="delete-button" href="{{ url_for('delete_post', post_id=post.id) }}">Delete Blog</a>
+
+    </div>
+
+</div>
+
+{% endblock %}

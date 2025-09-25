@@ -1,0 +1,17 @@
+# BUILD THE BASE
+FROM python:3.9-slim
+
+# SET THE WORKING DIRECTORY IN CONTAINER
+WORKDIR /app
+
+# COPY ALL THE FILES FROM THIS FOLDER TO DOCKER CONTAINER
+COPY . .
+
+# IMPORT THE REQUIREMENTS
+RUN pip install --no-cache-dir -r requirements.txt
+
+# RUN THE APP
+CMD ["python", "app.py"]
+
+# EXPOSE THE PORT
+EXPOSE 5000

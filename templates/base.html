@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block title%}
+
+    {% endblock %}
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <!-- Toast container -->
+        <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+
+        {% block body %}
+        {% endblock %}
+
+    </div>
+</body>
+<footer>
+    <p>Made with ♥️ Guru Sevak Singh.</p>
+</footer>
+
+
+<script>
+    (function () {
+        const container = document.getElementById('toast-container');
+
+        /**
+         * showToast(message, options)
+         * options: { type: 'info'|'success'|'warn'|'error', duration: milliseconds or 0 for persistent }
+         */
+        window.showToast = function (message, options = {}) {
+            const type = options.type || 'info';
+            const duration = typeof options.duration === 'number' ? options.duration : 4000; // default 4s
+
+            // create toast
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.setAttribute('role', 'status'); // accessible announcement
+            toast.setAttribute('aria-live', 'polite');
+
+            // icon (simple letter icon, replace with svg if you like)
+            const icon = document.createElement('div');
+            icon.className = 'icon';
+            icon.textContent = (type === 'success') ? '✓' : (type === 'error') ? '✕' : (type === 'warn') ? '!' : 'i';
+
+            // message
+            const msg = document.createElement('div');
+            msg.className = 'msg';
+            msg.textContent = message;
+
+            // close button
+            const close = document.createElement('button');
+            close.className = 'close';
+            close.setAttribute('aria-label', 'Dismiss notification');
+            close.innerHTML = '✕';
+
+            // assemble
+            toast.appendChild(icon);
+            toast.appendChild(msg);
+            toast.appendChild(close);
+            container.appendChild(toast);
+
+            // force reflow then show (for transition)
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+
+            // close handler
+            let removed = false;
+            function removeToast() {
+                if (removed) return;
+                removed = true;
+                toast.classList.remove('show');
+                // wait for transition out then remove
+                setTimeout(() => {
+                    if (toast && toast.parentNode) toast.parentNode.removeChild(toast);
+                }, 260);
+            }
+
+            close.addEventListener('click', removeToast);
+
+            // auto-dismiss if duration > 0
+            if (duration > 0) {
+                const timeoutId = setTimeout(removeToast, duration);
+                // pause on hover
+                toast.addEventListener('mouseenter', () => clearTimeout(timeoutId));
+            }
+
+            // optional: remove if user presses Escape while focused inside toast
+            toast.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') removeToast();
+            });
+
+            // focus management: move focus to close button so keyboard users can dismiss quickly
+            close.focus({ preventScroll: true });
+
+            return {
+                dismiss: removeToast,
+                element: toast
+            };
+        };
+    })();
+</script>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<script>
+    showToast("{{ message }}", { type: "{{category }}", duration: 4000 });
+</script>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+</html>
