@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+<title>Add Blog</title>
+
+{% endblock %}
+
+{% block body %}
+<div class="top">
+    <div class="title">
+        <h1>My Blog</h1>
+    </div>
+</div>
+
+<div class="content">
+    <div class="card">
+        <form action="{{ url_for('update_post', post_id=post.id) if post else url_for('add_blog') }}" method="POST">
+            <div class="form-control">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" class="form-input" placeholder="Enter Title"
+                    value="{{ post.title if post else '' }}">
+            </div>
+
+            <div class="form-control">
+                <label for="subtitle">subtitle:</label>
+                <input type="text" id="subtitle" name="subtitle" class="form-input" placeholder="Enter subtitle"
+                value="{{ post.subtitle if post else '' }}">
+            </div>
+
+            <div class="form-control">
+                <label for="body">body:</label>
+                <textarea type="text" id="body" name="body" class="form-input" placeholder="Enter body">{{post.body if post else ""}}</textarea>
+            </div>
+
+            <div class="form-control">
+                <button class="submit-button">
+                    {{ "Update Blog" if post else "Add Blog"}}
+
+                </button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock %}

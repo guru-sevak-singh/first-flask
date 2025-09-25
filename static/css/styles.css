@@ -1,18 +1,20 @@
-body{
- background: #efeff3;
- margin: 0;
- font-family: 'Raleway', sans-serif;
- -webkit-font-smoothing: antialiased;
-  color:#212121;
+body {
+  background: #efeff3;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #212121;
 }
-.wrapper{
+
+.wrapper {
   position: relative;
-  clear:both;
+  clear: both;
   margin: 0 auto 75px auto;
   width: 100%;
   overflow: hidden;
 }
-.top{
+
+.top {
   background: #4e89ae;
   height: 180px;
   border-top: 20px solid #43658b;
@@ -20,44 +22,44 @@ body{
 
 .top .title {
   width: 700px;
-  margin: 38px auto 0 auto; 
+  margin: 38px auto 0 auto;
 }
 
 .title h1 {
-  font-size:24px;
-  color:#FFF;
-  font-weight:500;
+  font-size: 24px;
+  color: #FFF;
+  font-weight: 500;
 }
 
-.content{
-    margin: -80px auto 100px;
+.content {
+  margin: -80px auto 100px;
   padding-bottom: 20px;
 }
 
-.card{
+.card {
   position: relative;
   background: #fff;
-  padding:50px;
+  padding: 50px;
   width: 600px;
   margin: 20px auto 0 auto;
-  box-shadow: 0 2px 4px rgba(100,100,100,.1);
+  box-shadow: 0 2px 4px rgba(100, 100, 100, .1);
 }
 
 .card h2 {
-  font-size:21px;
-  font-weight:500;
+  font-size: 21px;
+  font-weight: 500;
 }
 
 .card h2 a {
-  color:#CC0000;
-  text-decoration:none;
+  color: #CC0000;
+  text-decoration: none;
 }
 
 .card .text {
-  color:#212121;
-  margin-top:20px;
-  font-size:15px;
-  line-height:22px;
+  color: #212121;
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 22px;
 }
 
 footer {
@@ -68,4 +70,189 @@ footer {
   background-color: #43658b;
   color: white;
   text-align: center;
+}
+
+.center-box {
+  text-align: center;
+}
+
+.submit-button {
+  background-color: #4e89ae;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #43658b;
+}
+
+.delete-button {
+  background-color: #cc0000;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #a30000;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-control {
+  margin-bottom: 20px;
+}
+
+
+/* Toast container (fixed, bottom-right) */
+.toast-container {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 9999;
+  pointer-events: none;
+  /* allow clicks to pass through empty spaces */
+  max-width: 320px;
+}
+
+/* Individual toast */
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  color: #0b1220;
+  background: #f0f4f8;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-size: 14px;
+  transform: translateY(12px);
+  opacity: 0;
+  transition: transform 240ms cubic-bezier(.2, .9, .2, 1), opacity 240ms ease;
+  border: 1px solid rgba(11, 18, 32, 0.06);
+}
+
+/* Visible state */
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Types */
+.toast.info {
+  background: #eef6ff;
+  border-color: rgba(13, 83, 255, 0.12);
+}
+
+.toast.success {
+  background: #ecf9f1;
+  border-color: rgba(0, 160, 80, 0.12);
+}
+
+.toast.warn {
+  background: #fff8e6;
+  border-color: rgba(235, 146, 0, 0.12);
+}
+
+.toast.error {
+  background: #fff0f0;
+  border-color: rgba(220, 38, 38, 0.12);
+}
+
+/* Icon area */
+.toast .icon {
+  min-width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 6px;
+  height: 28px;
+  width: 28px;
+  font-size: 14px;
+}
+
+.toast.info .icon {
+  background: rgba(13, 83, 255, 0.08);
+  color: #0d53ff;
+}
+
+.toast.success .icon {
+  background: rgba(0, 160, 80, 0.08);
+  color: #00a050;
+}
+
+.toast.warn .icon {
+  background: rgba(235, 146, 0, 0.08);
+  color: #eb9200;
+}
+
+.toast.error .icon {
+  background: rgba(220, 38, 38, 0.08);
+  color: #dc2626;
+}
+
+/* Message text */
+.toast .msg {
+  flex: 1 1 auto;
+  line-height: 1.2;
+}
+
+/* Close button */
+.toast .close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 6px;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  opacity: 0.75;
+}
+
+.toast .close:hover {
+  opacity: 1;
+}
+
+.toast .close:focus {
+  outline: 2px solid rgba(0, 0, 0, 0.12);
+  outline-offset: 2px;
+}
+
+/* Small helper for demo area */
+.demo-controls {
+  padding: 1rem;
+  font-family: system-ui;
+}
+
+.demo-controls button {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
 }
