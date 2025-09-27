@@ -35,3 +35,12 @@
 - once up the app by command `docker-compose up --build`
 
 - once your service is started then use command `docker-compose up --scale web=3` or `docker-compose up --scale web=3 --build`
+
+
+5. implement the gunicorn, as our production server
+
+- import the gunicorn and add `gunicorn` into the requirement.txt file
+
+- update command from `python app.py` to `gunicorn --bind 0.0.0.0:5000 app:app` in the docker-compose.yml file in `web` section
+
+- again build and up the app either by `sudo docker-compose up --build` or by using 3 app server and nginx as load balancer use command `sudo docker-compose up --scale web=3 --build`

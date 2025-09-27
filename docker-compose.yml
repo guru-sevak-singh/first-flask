@@ -3,7 +3,7 @@ version: "3.9"
 services :
   web:
     build: .
-    command: python app.py
+    command: gunicorn --bind 0.0.0.0:5000 app:app # FOR PRODUCTION WE USE GUNICORN AND FOR TESTING WE USER "python app.py"
     volumes:
       - .:/code
     expose:

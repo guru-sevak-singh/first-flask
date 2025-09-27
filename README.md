@@ -20,6 +20,7 @@ This project demonstrates core CRUD functionality, Flask templating, containeriz
 ## 🛠 Skills & Tools Used
 - **Python (Flask)** – backend & routing
 - **PostgreSQL** – production-grade relational database
+- **Gunicorn** – WSGI server for running Flask apps
 - **Nginx** – reverse proxy & load balancer
 - **Docker & Docker Compose** – containerization and orchestration
 - **Jinja2** – templating engine for frontend
